@@ -35,9 +35,13 @@ class Player(pygame.sprite.Sprite):
 		self.image.fill(AMARILLO)
 		self.rect = self.image.get_rect()
 	def updateRight(self):
+                Player.speedX+=1
 		self.rect.x+=Player.speedX
+                reproducir_sonido("step.ogg")
 	def updateLeft(self):
-		self.rect.x-=Player.speedX
+                Player.speddX-=1
+		self.rect.x+=Player.speedX
+                reproducir_sonido("step.ogg")
 	def stop(self):
 		self.rect.x=self.rect.x
 
@@ -89,10 +93,8 @@ while not fin:
 		elif event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_LEFT:
 				player.updateLeft()
-				reproducir_sonido("step.ogg")
 			if event.type == pygame.K_RIGHT:
 				player.updateRight()
-				reproducir_sonido("step.ogg")
 			if event.type == pygame.K_SPACE:
 				bullet=Bala(RED)
 				bullet.rect.x=player.rect.x
